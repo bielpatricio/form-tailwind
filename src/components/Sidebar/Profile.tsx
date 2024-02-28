@@ -2,10 +2,10 @@ import { LogOut } from 'lucide-react'
 
 export function Profile() {
   return (
-    <div className="grid items-center gap-3 grid-cols-profile">
+    <div className="grid-cols-profile grid items-center gap-3">
       <img
         src="https://github.com/bielpatricio.png"
-        className="w-10 h-10 rounded-full"
+        className="h-10 w-10 rounded-full"
         alt=""
       />
 
@@ -20,9 +20,9 @@ export function Profile() {
 
       <button
         type="button"
-        className="group ml-auto p-2 hover:bg-zinc-50 rounded-md"
+        className="group ml-auto rounded-md p-2 hover:bg-zinc-50"
       >
-        <LogOut className="w-5 h-5 text-zinc-500 group-hover:text-red-400" />
+        <LogOut className="h-5 w-5 text-zinc-500 group-hover:text-red-400" />
       </button>
     </div>
   )
