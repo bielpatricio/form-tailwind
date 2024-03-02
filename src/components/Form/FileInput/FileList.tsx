@@ -17,7 +17,7 @@ export function FileList() {
             name={file.name}
             size={file.size}
             key={file.name}
-            state="error"
+            state="complete"
           />
         )
       })}
