@@ -64,7 +64,7 @@ export function FileItem({ name, size, state }: FileItemProps) {
             </span>
           </div>
 
-          <button className="text-sm font-semibold text-error-700 hover:text-error-300 hover:text-error-900 dark:text-error-400">
+          <button className="text-sm font-semibold text-error-700 hover:text-error-300 dark:text-error-400 dark:hover:text-error-900">
             Try again
           </button>
         </div>

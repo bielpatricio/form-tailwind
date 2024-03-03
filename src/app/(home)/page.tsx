@@ -3,10 +3,12 @@ import { Bold, Italic, Link, List, ListOrdered, Mail } from 'lucide-react'
 import { SettingsTabs } from '@/components/SettingsTabs'
 import * as Input from '@/components/Input'
 import * as FileInput from '@/components/Form/FileInput'
-import { Select } from '@/components/Form/Select'
-import { SelectItem } from '@/components/Form/Select/SelectItem'
+import * as Select from '@/components/Form/Select'
+import { Select as BasicSelect } from '@/components/Form/BasicSelect'
+import { SelectItem } from '@/components/Form/BasicSelect/SelectItem'
 import { Textarea } from '@/components/Form/Textarea'
 import { Button } from '@/components/Button'
+import { CountrySelect } from './CountrySelect'
 
 export default function Home() {
   return (
@@ -18,7 +20,7 @@ export default function Home() {
       <SettingsTabs />
 
       <div className="mt-6 flex flex-col">
-        <div className="flex flex-col justify-between gap-4 border-b border-zinc-200 pb-5 lg:flex-row lg:items-center dark:border-zinc-700">
+        <div className="flex flex-col justify-between gap-4 border-b border-zinc-200 pb-5 dark:border-zinc-700 lg:flex-row lg:items-center">
           <div className="space-y-1">
             <h2 className="text-lg font-medium text-zinc-900 dark:text-zinc-100">
               Personal info
@@ -57,7 +59,7 @@ export default function Home() {
               <div className="flex flex-col gap-3 lg:block">
                 <label
                   htmlFor="lastName"
-                  className="text-sm font-medium text-zinc-700 lg:sr-only dark:text-zinc-300"
+                  className="text-sm font-medium text-zinc-700 dark:text-zinc-300 lg:sr-only"
                 >
                   Last Name
                 </label>
@@ -112,6 +114,7 @@ export default function Home() {
             >
               Role
             </label>
+
             <Input.Root>
               <Input.Control id="role" defaultValue="CTO" />
             </Input.Root>
@@ -125,10 +128,7 @@ export default function Home() {
               Country
             </label>
 
-            <Select placeholder="Select a country...">
-              <SelectItem value="br" text="Brazil" />
-              <SelectItem value="us" text="United States" />
-            </Select>
+            <CountrySelect />
           </div>
 
           <div className="flex flex-col gap-3 pt-5 lg:grid lg:grid-cols-form">
@@ -139,13 +139,27 @@ export default function Home() {
               Timezone
             </label>
 
-            <Select placeholder="Select a timezone...">
-              <SelectItem
-                value="utc8"
-                text="Pacific Standard Time (UTC-08:00)"
-              />
-              <SelectItem value="utc3" text="America São Paulo (UTC-03:00)" />
-            </Select>
+            <Select.Root name="timezone">
+              <Select.Trigger>
+                <Select.Value placeholder="Select your timezone..." />
+              </Select.Trigger>
+
+              <Select.Content>
+                <Select.Item value="utc-8">
+                  <Select.ItemText>
+                    Pacific Standard Time (PST)
+                    <span className="text-sm text-zinc-500">UTC 08:00</span>
+                  </Select.ItemText>
+                </Select.Item>
+
+                <Select.Item value="utc-3">
+                  <Select.ItemText>
+                    America São Paulo (ASP)
+                    <span className="text-sm text-zinc-500">UTC 03:00</span>
+                  </Select.ItemText>
+                </Select.Item>
+              </Select.Content>
+            </Select.Root>
           </div>
 
           <div className="flex flex-col gap-3 pt-5 lg:grid lg:grid-cols-form">
@@ -161,10 +175,10 @@ export default function Home() {
 
             <div className="space-y-3">
               <div className="flex flex-col gap-3 lg:grid lg:grid-cols-2">
-                <Select placeholder="" defaultValue="normal">
+                <BasicSelect placeholder="" defaultValue="normal">
                   <SelectItem value="normal" text="Normal Text" />
                   <SelectItem value="md" text="Markdown" />
-                </Select>
+                </BasicSelect>
 
                 <div className="flex items-center gap-1">
                   <Button type="button" variant="ghost">
